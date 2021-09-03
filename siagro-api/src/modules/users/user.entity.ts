@@ -1,5 +1,5 @@
 import { Table, Column, Model, DataType } from 'sequelize-typescript';
-import { UserDto } from './dto/user.dto';
+
 
 @Table
 export class User extends Model<User> {
