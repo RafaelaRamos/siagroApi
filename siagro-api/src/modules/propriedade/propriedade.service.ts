@@ -8,8 +8,8 @@ import {PROPRIEDADE_REPOSITORY } from '../../core/constants';
 export class PropriedadeService {
     constructor(@Inject(PROPRIEDADE_REPOSITORY) private readonly propriedadeRepository: typeof Propriedade) { }
 
-    async create(propriedade: Propriedade, userId): Promise<Propriedade> {
-        return await this.propriedadeRepository.create<Propriedade>(propriedade,userId);
+    async create(propriedade: Propriedade): Promise<Propriedade> {
+        return await this.propriedadeRepository.create<Propriedade>(propriedade);
     }
 
     async findAll(): Promise<Propriedade[]> {
@@ -17,6 +17,13 @@ export class PropriedadeService {
         	include: [{ model: User, attributes: { exclude: ['password'] } }],
     	});
     }
+    async findAllId(userId): Promise<Propriedade[]> {
+        return await this.propriedadeRepository.findAll<Propriedade>({
+            where: {  userId },
+    	});
+    }
+
+
 
     async findOne(id): Promise<Propriedade> {
         return await this.propriedadeRepository.findOne({
@@ -24,6 +31,8 @@ export class PropriedadeService {
         	include: [{ model: User, attributes: { exclude: ['password'] } }],
     	});
     }
+
+
 
     async delete(id, userId) {
         return await this.propriedadeRepository.destroy({ where: { id, userId } });

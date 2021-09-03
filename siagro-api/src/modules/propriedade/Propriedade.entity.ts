@@ -3,6 +3,8 @@ import { User } from '../users/user.entity';
 
 @Table
 export class Propriedade extends Model<Propriedade> {
+
+    
     @Column({
         type: DataType.STRING,
         allowNull: false,
